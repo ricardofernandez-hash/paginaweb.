@@ -3,21 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Repuestos y Accesorios para Bicicletas | Tienda Especializada</title>
 
-    <!-- NUEVA FUENTE TIPOGRÁFICA DEPORTIVA (MONTSERRAT) -->
+    <!-- FUENTE TIPOGRÁFICA DEPORTIVA (MONTSERRAT) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
-    <!-- ESTILO COMPLETAMENTE NUEVO (TEMA ORANGE SPORT / URBAN MTB) -->
+    <!-- ESTILOS -->
     <style>
         :root {
-            --primary: #ff5722;          /* Naranja Deportivo Neón */
-            --primary-hover: #e64a19;    /* Naranja más oscuro para botones */
-            --dark-asphalt: #18191c;     /* Gris Asfalto / Chasis */
-            --light-bg: #f3f4f6;         /* Gris claro industrial */
+            --primary: #ff5722;
+            --primary-hover: #e64a19;
+            --dark-asphalt: #18191c;
+            --light-bg: #f3f4f6;
             --card-bg: #ffffff;
             --text-main: #1f2937;
             --text-muted: #6b7280;
@@ -25,558 +24,385 @@
             --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Montserrat', sans-serif; color: var(--text-main); background-color: #ffffff; line-height: 1.6; }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--text-main);
-            background-color: #ffffff;
-            line-height: 1.6;
-        }
-
-        /* ==========================================
-           ENCABEZADO / NAVEGACIÓN
-        ========================================== */
         header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 8%;
-            background: rgba(24, 25, 28, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 3px solid var(--primary);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 8%; background: rgba(24, 25, 28, 0.95); backdrop-filter: blur(10px);
+            border-bottom: 3px solid var(--primary); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        .logo { font-size: 1.5rem; font-weight: 900; color: #ffffff; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
+        .logo::before { content: "⚙️"; font-size: 1.5rem; }
+
+        nav { display: flex; gap: 1.5rem; align-items: center; }
+        nav a { color: #e5e7eb; text-decoration: none; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; transition: var(--transition); }
+        nav a:hover { color: var(--primary); }
+
+        .btn-header-icon {
+            background: #25282e; border: 1px solid #3d424d; color: #fff; padding: 0.5rem 1rem;
+            border-radius: 20px; font-weight: 700; font-size: 0.85rem; cursor: pointer; display: flex;
+            align-items: center; gap: 8px; transition: var(--transition); position: relative;
+        }
+        .btn-header-icon:hover { background: var(--primary); border-color: var(--primary); }
+        .badge-count {
+            background: var(--primary); color: #fff; border-radius: 50%; padding: 2px 7px;
+            font-size: 0.75rem; font-weight: 900;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 900;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .hero { position: relative; min-height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 3rem 5%; }
+        .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(24, 25, 28, 0.9) 0%, rgba(24, 25, 28, 0.6) 100%); z-index: 1; }
+        .hero-text { position: relative; z-index: 2; max-width: 900px; color: #ffffff; }
+        .hero-text h1 { font-size: 3.2rem; font-weight: 900; line-height: 1.15; margin-bottom: 1.2rem; text-transform: uppercase; }
+        .hero-text p { font-size: 1.2rem; margin-bottom: 2.2rem; color: #d1d5db; }
+        .hero-text button { background: var(--primary); color: #ffffff; border: none; padding: 1.1rem 3rem; font-size: 1rem; font-weight: 800; text-transform: uppercase; border-radius: var(--border-radius); cursor: pointer; transition: var(--transition); }
+        .hero-text button:hover { background: var(--primary-hover); transform: translateY(-3px); }
+
+        .section { padding: 5rem 8%; }
+        .section.fondo { background-color: var(--light-bg); }
+        .section h2 { text-align: center; font-size: 2.2rem; font-weight: 900; color: var(--dark-asphalt); text-transform: uppercase; margin-bottom: 1.5rem; position: relative; }
+        .section h2::after { content: ''; display: block; width: 80px; height: 5px; background: var(--primary); margin: 10px auto 0; border-radius: 3px; }
+        .texto-centro { text-align: center; max-width: 800px; margin: 0 auto; font-size: 1.15rem; color: var(--text-muted); }
+
+        .metodos-pago-container { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 1rem; margin-bottom: 2.5rem; }
+        .pago-badge { background: #ffffff; border: 1px solid #d1d5db; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: var(--dark-asphalt); }
+
+        .tienda-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
+        .producto-card { background: var(--card-bg); border-radius: var(--border-radius); overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); display: flex; flex-direction: column; border: 1px solid #e5e7eb; position: relative; }
+        .producto-card img { width: 100%; height: 200px; object-fit: cover; }
+        .producto-info { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
+        .producto-info h3 { font-size: 1.1rem; font-weight: 800; color: var(--dark-asphalt); margin-bottom: 0.5rem; }
+        .producto-info p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+        .precio { font-size: 1.25rem; font-weight: 900; color: var(--primary); margin-bottom: 1rem; }
+        
+        .acciones-card { display: flex; gap: 8px; }
+        .btn-comprar { background: var(--primary); color: #ffffff; border: none; padding: 0.8rem; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; border-radius: 8px; cursor: pointer; transition: var(--transition); flex: 1; }
+        .btn-comprar:hover { background: var(--primary-hover); }
+        .btn-fav { background: #f3f4f6; border: 1px solid #d1d5db; padding: 0.8rem; border-radius: 8px; cursor: pointer; transition: var(--transition); font-size: 1rem; }
+        .btn-fav:hover { background: #ffebee; border-color: #ff5252; }
+
+        /* PANEL LATERAL DEL CARRITO Y FAVORITOS */
+        .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1001; display: none; }
+        .overlay.activo { display: block; }
+        .cart-drawer {
+            position: fixed; top: 0; right: -420px; width: 400px; max-width: 100%; height: 100%;
+            background: #ffffff; z-index: 1002; box-shadow: -5px 0 25px rgba(0,0,0,0.2);
+            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column;
         }
+        .cart-drawer.activo { right: 0; }
+        .drawer-header { padding: 1.5rem; background: var(--dark-asphalt); color: #fff; display: flex; justify-content: space-between; align-items: center; }
+        .drawer-header h3 { font-size: 1.2rem; font-weight: 800; text-transform: uppercase; }
+        .close-btn { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
+        .drawer-tabs { display: flex; border-bottom: 1px solid #e5e7eb; }
+        .tab-btn { flex: 1; padding: 1rem; background: #f9fafb; border: none; font-weight: 700; font-size: 0.85rem; cursor: pointer; text-transform: uppercase; color: var(--text-muted); }
+        .tab-btn.activo { background: #fff; color: var(--primary); border-bottom: 3px solid var(--primary); }
+        .drawer-content { padding: 1.5rem; flex: 1; overflow-y: auto; }
+        .item-row { display: flex; gap: 12px; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e5e7eb; align-items: center; }
+        .item-row img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; }
+        .item-details { flex: 1; }
+        .item-details h4 { font-size: 0.9rem; font-weight: 800; color: var(--dark-asphalt); }
+        .item-details p { font-size: 0.85rem; color: var(--primary); font-weight: 700; }
+        .item-qty { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
+        .qty-btn { background: #e5e7eb; border: none; width: 22px; height: 22px; border-radius: 4px; font-weight: 800; cursor: pointer; }
+        .btn-delete { background: none; border: none; color: #ef4444; cursor: pointer; font-size: 1.1rem; }
+        .drawer-footer { padding: 1.5rem; background: #f9fafb; border-top: 1px solid #e5e7eb; }
+        .total-row { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 900; margin-bottom: 1rem; color: var(--dark-asphalt); }
+        .btn-checkout { width: 100%; background: var(--primary); color: #fff; border: none; padding: 1rem; font-weight: 800; font-size: 0.95rem; text-transform: uppercase; border-radius: 8px; cursor: pointer; transition: var(--transition); }
+        .btn-checkout:hover { background: var(--primary-hover); }
 
-        .logo::before {
-            content: "⚙️";
-            font-size: 1.5rem;
-        }
-
-        nav {
-            display: flex;
-            gap: 1.8rem;
-        }
-
-        nav a {
-            color: #e5e7eb;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            transition: var(--transition);
-            position: relative;
-            padding: 5px 0;
-        }
-
-        nav a:hover {
-            color: var(--primary);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background-color: var(--primary);
-            transition: var(--transition);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* ==========================================
-           HERO (BANNER PRINCIPAL)
-        ========================================== */
-        .hero {
-            position: relative;
-            min-height: 80vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 3rem 5%;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(24, 25, 28, 0.9) 0%, rgba(24, 25, 28, 0.6) 100%);
-            z-index: 1;
-        }
-
-        .hero-text {
-            position: relative;
-            z-index: 2;
-            max-width: 900px;
-            color: #ffffff;
-        }
-
-        .hero-text h1 {
-            font-size: 3.2rem;
-            font-weight: 900;
-            line-height: 1.15;
-            margin-bottom: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: -0.5px;
-        }
-
-        .hero-text p {
-            font-size: 1.2rem;
-            margin-bottom: 2.2rem;
-            color: #d1d5db;
-            font-weight: 400;
-        }
-
-        .hero-text button {
-            background: var(--primary);
-            color: #ffffff;
-            border: none;
-            padding: 1.1rem 3rem;
-            font-size: 1rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            box-shadow: 0 10px 25px rgba(255, 87, 34, 0.4);
-            transition: var(--transition);
-        }
-
-        .hero-text button:hover {
-            background: var(--primary-hover);
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(255, 87, 34, 0.6);
-        }
-
-        /* ==========================================
-           SECCIONES GENERALES
-        ========================================== */
-        .section {
-            padding: 5rem 8%;
-        }
-
-        .section.fondo {
-            background-color: var(--light-bg);
-        }
-
-        .section h2 {
-            text-align: center;
-            font-size: 2.2rem;
-            font-weight: 900;
-            color: var(--dark-asphalt);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 2.5rem;
-            position: relative;
-        }
-
-        .section h2::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 5px;
-            background: var(--primary);
-            margin: 10px auto 0;
-            border-radius: 3px;
-        }
-
-        .texto-centro {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.15rem;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-
-        /* ==========================================
-           TARJETAS DE SERVICIOS
-        ========================================== */
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: var(--card-bg);
-            padding: 2.5rem 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-            transition: var(--transition);
-            border-top: 4px solid var(--dark-asphalt);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            border-top-color: var(--primary);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
-        }
-
-        .card h3 {
-            font-size: 1.3rem;
-            color: var(--dark-asphalt);
-            margin-bottom: 1rem;
-            font-weight: 800;
-            text-transform: uppercase;
-        }
-
-        .card p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 1.8rem;
-        }
-
-        .card button {
-            background-color: var(--dark-asphalt);
-            color: #ffffff;
-            border: none;
-            padding: 0.8rem 1.6rem;
-            border-radius: var(--border-radius);
-            font-weight: 700;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            cursor: pointer;
-            transition: var(--transition);
-            align-self: flex-start;
-        }
-
-        .card button:hover {
-            background-color: var(--primary);
-            box-shadow: 0 6px 15px rgba(255, 87, 34, 0.3);
-        }
-
-        /* ==========================================
-           GALERÍA
-        ========================================== */
-        .galeria {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.8rem;
-        }
-
-        .galeria img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            border-radius: var(--border-radius);
-            box-shadow: 0 6px 15px rgba(0,0,0,0.08);
-            cursor: pointer;
-            transition: var(--transition);
-            filter: grayscale(15%);
-        }
-
-        .galeria img:hover {
-            transform: scale(1.03);
-            filter: grayscale(0%);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
-        }
-
-        /* ==========================================
-           CALCULADORA
-        ========================================== */
-        .calculadora {
-            max-width: 420px;
-            margin: 0 auto;
-            background: var(--dark-asphalt);
-            padding: 2.2rem;
-            border-radius: var(--border-radius);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-            border: 2px solid #2d3139;
-        }
-
-        .calculadora input {
-            width: 100%;
-            padding: 1rem;
-            background: #25282e;
-            border: 1px solid #3d424d;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            color: #ffffff;
-            font-family: inherit;
-            outline: none;
-            transition: var(--transition);
-        }
-
-        .calculadora input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.25);
-        }
-
-        .botones-calculadora {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 0.8rem;
-        }
-
-        .botones-calculadora button {
-            background: var(--primary);
-            color: #ffffff;
-            border: none;
-            padding: 1rem;
-            font-size: 1.3rem;
-            font-weight: 800;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .botones-calculadora button:hover {
-            background: #ffffff;
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        #resultado {
-            text-align: center;
-            font-size: 1.3rem;
-            color: #ffffff;
-            margin-top: 0.5rem;
-            padding: 1rem;
-            background-color: #25282e;
-            border-radius: 8px;
-            font-weight: 700;
-            border: 1px dashed var(--primary);
-        }
-
-        /* ==========================================
-           FORMULARIO DE CONTACTO
-        ========================================== */
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-        }
-
-        form input,
-        form textarea {
-            width: 100%;
-            padding: 1rem 1.2rem;
-            border: 2px solid #e5e7eb;
-            border-radius: var(--border-radius);
-            font-size: 0.95rem;
-            font-family: inherit;
-            transition: var(--transition);
-            outline: none;
-            background-color: var(--light-bg);
-        }
-
-        form input:focus,
-        form textarea:focus {
-            background-color: #ffffff;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(255, 87, 34, 0.15);
-        }
-
-        form textarea {
-            height: 140px;
-            resize: vertical;
-        }
-
-        form button[type="submit"] {
-            background: var(--dark-asphalt);
-            color: #ffffff;
-            border: none;
-            padding: 1.1rem;
-            font-size: 0.95rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        form button[type="submit"]:hover {
-            background: var(--primary);
-            box-shadow: 0 10px 20px rgba(255, 87, 34, 0.4);
-        }
-
-        /* ==========================================
-           PIE DE PÁGINA
-        ========================================== */
-        footer {
-            background-color: var(--dark-asphalt);
-            color: #9ca3af;
-            text-align: center;
-            padding: 3rem 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            font-size: 0.85rem;
-            border-top: 4px solid var(--primary);
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 1rem;
-                padding: 1rem 5%;
-            }
-
-            nav {
-                gap: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .hero-text h1 {
-                font-size: 2.1rem;
-            }
-
-            .section {
-                padding: 3.5rem 5%;
-            }
-        }
+        footer { background-color: var(--dark-asphalt); color: #9ca3af; text-align: center; padding: 3rem 1rem; border-top: 4px solid var(--primary); }
     </style>
 </head>
 
 <body>
 
-    <!-- ENCABEZADO -->
     <header>
-        <div class="logo">
-            BiciRepuestos
-        </div>
-
+        <div class="logo">BiciRepuestos</div>
         <nav>
             <a href="#inicio">Inicio</a>
-            <a href="#nosotros">Nosotros</a>
-            <a href="#servicios">Servicios</a>
-            <a href="#galeria">Galería</a>
-            <a href="#contacto">Contacto</a>
+            <a href="#tienda">Tienda Online</a>
+            <button class="btn-header-icon" onclick="abrirDrawer('fav')">
+                ❤️ Guardados <span class="badge-count" id="count-fav">0</span>
+            </button>
+            <button class="btn-header-icon" onclick="abrirDrawer('cart')">
+                🛒 Carrito <span class="badge-count" id="count-cart">0</span>
+            </button>
         </nav>
     </header>
 
-    <!-- HERO PRINCIPAL -->
-    <section id="inicio" class="hero" style="background-image: url('https://cdn.brujulabike.com/uploads/images/emtb_bicicleta_electrina_montana.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    <section id="inicio" class="hero" style="background-image: url('https://cdn.brujulabike.com/uploads/images/emtb_bicicleta_electrina_montana.jpg'); background-size: cover; background-position: center;">
         <div class="hero-text">
             <h1>Especialistas en Repuestos y Mantenimiento de Bicicletas</h1>
-            <p>Encuentra las mejores piezas, componentes Shimano y herramientas para mantener tu bicicleta en perfectas condiciones.</p>
-            <button onclick="mostrarMensaje()">Conocer más</button>
+            <p>Encuentra piezas originales y componentes Shimano para tu bicicleta.</p>
+            <button onclick="location.href='#tienda'">Comprar Repuestos</button>
         </div>
     </section>
 
-    <!-- SOBRE NOSOTROS -->
-    <section id="nosotros" class="section">
-        <h2>Sobre Nosotros</h2>
-        <p class="texto-centro">
-            Somos apasionados del ciclismo. Ofrecemos repuestos de alta calidad, asesoría técnica y componentes originales para todo tipo de bicicletas.
-        </p>
-    </section>
+    <section id="tienda" class="section fondo">
+        <h2>Tienda en Línea</h2>
+        <p class="texto-centro">Añade repuestos al carrito o guárdalos en tus favoritos para comprar después.</p>
 
-    <!-- SERVICIOS -->
-    <section id="servicios" class="section fondo">
-        <h2>Servicios</h2>
+        <div class="metodos-pago-container">
+            <span class="pago-badge">💳 Tarjeta Crédito / Débito</span>
+            <span class="pago-badge">🏦 PSE (Cuentas Bancarias)</span>
+            <span class="pago-badge">📱 Nequi / Daviplata</span>
+            <span class="pago-badge">🏧 Transferencia Bancaria</span>
+        </div>
 
-        <div class="cards">
-            <div class="card">
-                <h3>Venta de Repuestos</h3>
-                <p>Componentes originales y repuestos Shimano para transmisiones, frenos y más.</p>
-                <button onclick="mostrarServicio('Venta de Repuestos')">Ver más</button>
-            </div>
-
-            <div class="card">
-                <h3>Mantenimiento General</h3>
-                <p>Ajustes de transmisión, lubricación, centrado de ruedas y puesta a punto.</p>
-                <button onclick="mostrarServicio('Mantenimiento General')">Ver más</button>
-            </div>
-
-            <div class="card">
-                <h3>Instalación y Ajustes</h3>
-                <p>Instalación profesional de accesorios y actualización de componentes.</p>
-                <button onclick="mostrarServicio('Instalación y Ajustes')">Ver más</button>
-            </div>
+        <div class="tienda-grid" id="productos-container">
+            <!-- Se renderizan los productos mediante JavaScript -->
         </div>
     </section>
 
-    <!-- GALERÍA -->
-    <section id="galeria" class="section">
-        <h2>Galería de Productos</h2>
+    <!-- OVERLAY & DRAWER LATERAL -->
+    <div class="overlay" id="overlay" onclick="cerrarDrawer()"></div>
 
-        <div class="galeria">
-            <img src="https://i.pinimg.com/originals/e4/2b/a9/e42ba94613f78040b6009c20b72d5bea.jpg" alt="Accesorios y Repuestos de Bicicleta" onclick="ampliarImagen(this)">
-            <img src="https://tiendadbicis.com/wp-content/uploads/2023/10/repuestos-shimano.jpg" alt="Repuestos Shimano para Bicicletas" onclick="ampliarImagen(this)">
-            <img src="https://www.bttbike.com/foto/o/12/05/1205370784_bicicletas_020.jpg" alt="Componentes y Bicicletas" onclick="ampliarImagen(this)">
+    <div class="cart-drawer" id="cart-drawer">
+        <div class="drawer-header">
+            <h3 id="drawer-title">Mi Carrito</h3>
+            <button class="close-btn" onclick="cerrarDrawer()">&times;</button>
         </div>
-    </section>
-
-    <!-- CALCULADORA -->
-    <section class="section fondo">
-        <h2>Calculadora</h2>
-
-        <div class="calculadora">
-            <input type="number" id="numero1" placeholder="Número 1">
-            <input type="number" id="numero2" placeholder="Número 2">
-
-            <div class="botones-calculadora">
-                <button onclick="sumar()">+</button>
-                <button onclick="restar()">-</button>
-                <button onclick="multiplicar()">×</button>
-                <button onclick="dividir()">÷</button>
+        <div class="drawer-tabs">
+            <button class="tab-btn activo" id="tab-cart" onclick="switchTab('cart')">🛒 Carrito</button>
+            <button class="tab-btn" id="tab-fav" onclick="switchTab('fav')">❤️ Guardados</button>
+        </div>
+        <div class="drawer-content" id="drawer-items">
+            <!-- Los ítems del carrito o favoritos se cargan aquí -->
+        </div>
+        <div class="drawer-footer" id="drawer-footer">
+            <div class="total-row">
+                <span>Total:</span>
+                <span id="total-precio">$ 0 COP</span>
             </div>
-
-            <h3 id="resultado">Resultado: 0</h3>
+            <button class="btn-checkout" onclick="procesarPagoCarrito()">Pagar Todo con Wompi / PSE</button>
         </div>
-    </section>
+    </div>
 
-    <!-- CONTACTO -->
-    <section id="contacto" class="section">
-        <h2>Contacto</h2>
-
-        <form onsubmit="enviarFormulario(event)">
-            <input type="text" id="nombre" placeholder="Nombre" required>
-            <input type="email" id="correo" placeholder="Correo electrónico" required>
-            <textarea id="mensaje" placeholder="Escribe tu mensaje o consulta sobre repuestos" required></textarea>
-            <button type="submit">Enviar</button>
-        </form>
-    </section>
-
-    <!-- PIE DE PÁGINA -->
     <footer>
         <p>© 2026 BiciRepuestos - Tienda y Taller de Bicicletas</p>
-        <p>Página creada con HTML, CSS y JavaScript</p>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- SCRIPT OFICIAL DE WOMPI -->
+    <script src="https://checkout.wompi.co/widget.js"></script>
+    <script>
+        // CATÁLOGO DE PRODUCTOS
+        const productos = [
+            { id: 1, nombre: "Kit de Transmisión Shimano 9v", desc: "Incluye cadena, pachas y desviador compatible con MTB.", precio: 249900, img: "https://i.pinimg.com/originals/e4/2b/a9/e42ba94613f78040b6009c20b72d5bea.jpg" },
+            { id: 2, nombre: "Frenos Hidráulicos Shimano MT200", desc: "Juego de frenos delantero y trasero purgados listos.", precio: 185000, img: "https://tiendadbicis.com/wp-content/uploads/2023/10/repuestos-shimano.jpg" },
+            { id: 3, nombre: "Suspensión delantera R29", desc: "Bloqueo remoto al manubrio, recorrido de 100mm.", precio: 380000, img: "https://www.bttbike.com/foto/o/12/05/1205370784_bicicletas_020.jpg" }
+        ];
 
+        // ESTADO DE LA APLICACIÓN (Carga inicial desde localStorage)
+        let carrito = JSON.parse(localStorage.getItem('bici_cart')) || [];
+        let favoritos = JSON.parse(localStorage.getItem('bici_favs')) || [];
+        let currentTab = 'cart';
+
+        // RENDERIZAR PRODUCTOS EN LA TIENDA
+        function renderProductos() {
+            const container = document.getElementById('productos-container');
+            container.innerHTML = productos.map(prod => `
+                <div class="producto-card">
+                    <img src="${prod.img}" alt="${prod.nombre}">
+                    <div class="producto-info">
+                        <div>
+                            <h3>${prod.nombre}</h3>
+                            <p>${prod.desc}</p>
+                        </div>
+                        <div>
+                            <div class="precio">$ ${prod.precio.toLocaleString()} COP</div>
+                            <div class="acciones-card">
+                                <button class="btn-comprar" onclick="agregarAlCarrito(${prod.id})">Añadir al Carrito</button>
+                                <button class="btn-fav" onclick="toggleFavorito(${prod.id})" title="Guardar para después">
+                                    ${favoritos.includes(prod.id) ? '❤️' : '🤍'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            actualizarBadges();
+        }
+
+        // AGREGAR AL CARRITO
+        function agregarAlCarrito(id) {
+            const item = carrito.find(p => p.id === id);
+            if (item) {
+                item.cantidad += 1;
+            } else {
+                carrito.push({ id, cantidad: 1 });
+            }
+            guardarEstado();
+            abrirDrawer('cart');
+        }
+
+        // GUARDAR / QUITAR FAVORITOS
+        function toggleFavorito(id) {
+            if (favoritos.includes(id)) {
+                favoritos = favoritos.filter(favId => favId !== id);
+            } else {
+                favoritos.push(id);
+            }
+            guardarEstado();
+            renderProductos();
+            if (currentTab === 'fav') renderDrawerContent();
+        }
+
+        // CAMBIAR CANTIDAD EN CARRITO
+        function cambiarCantidad(id, delta) {
+            const item = carrito.find(p => p.id === id);
+            if (item) {
+                item.cantidad += delta;
+                if (item.cantidad <= 0) {
+                    carrito = carrito.filter(p => p.id !== id);
+                }
+            }
+            guardarEstado();
+            renderDrawerContent();
+        }
+
+        // ELIMINAR DEL CARRITO
+        function eliminarDelCarrito(id) {
+            carrito = carrito.filter(p => p.id !== id);
+            guardarEstado();
+            renderDrawerContent();
+        }
+
+        // PASAR FAVORITO AL CARRITO
+        function moverFavAlCarrito(id) {
+            agregarAlCarrito(id);
+            favoritos = favoritos.filter(favId => favId !== id);
+            guardarEstado();
+            renderProductos();
+        }
+
+        // GUARDAR EN LOCALSTORAGE Y ACTUALIZAR CONTADORES
+        function guardarEstado() {
+            localStorage.setItem('bici_cart', JSON.stringify(carrito));
+            localStorage.setItem('bici_favs', JSON.stringify(favoritos));
+            actualizarBadges();
+        }
+
+        function actualizarBadges() {
+            const totalItemsCart = carrito.reduce((acc, curr) => acc + curr.cantidad, 0);
+            document.getElementById('count-cart').innerText = totalItemsCart;
+            document.getElementById('count-fav').innerText = favoritos.length;
+        }
+
+        // CONTROLES DEL DRAWER LATERAL
+        function abrirDrawer(tab) {
+            currentTab = tab;
+            document.getElementById('overlay').classList.add('activo');
+            document.getElementById('cart-drawer').classList.add('activo');
+            switchTab(tab);
+        }
+
+        function cerrarDrawer() {
+            document.getElementById('overlay').classList.remove('activo');
+            document.getElementById('cart-drawer').classList.remove('activo');
+        }
+
+        function switchTab(tab) {
+            currentTab = tab;
+            document.getElementById('tab-cart').classList.toggle('activo', tab === 'cart');
+            document.getElementById('tab-fav').classList.toggle('activo', tab === 'fav');
+            document.getElementById('drawer-title').innerText = tab === 'cart' ? 'Mi Carrito' : 'Mis Favoritos';
+            document.getElementById('drawer-footer').style.display = tab === 'cart' ? 'block' : 'none';
+            renderDrawerContent();
+        }
+
+        // RENDERIZAR CONTENIDO DENTRO DEL DRAWER
+        function renderDrawerContent() {
+            const container = document.getElementById('drawer-items');
+            if (currentTab === 'cart') {
+                if (carrito.length === 0) {
+                    container.innerHTML = `<p style="text-align:center; color:#9ca3af; margin-top:2rem;">Tu carrito está vacío 🛒</p>`;
+                    document.getElementById('total-precio').innerText = '$ 0 COP';
+                    return;
+                }
+                let total = 0;
+                container.innerHTML = carrito.map(item => {
+                    const prod = productos.find(p => p.id === item.id);
+                    total += prod.precio * item.cantidad;
+                    return `
+                        <div class="item-row">
+                            <img src="${prod.img}" alt="${prod.nombre}">
+                            <div class="item-details">
+                                <h4>${prod.nombre}</h4>
+                                <p>$ ${(prod.precio * item.cantidad).toLocaleString()} COP</p>
+                                <div class="item-qty">
+                                    <button class="qty-btn" onclick="cambiarCantidad(${prod.id}, -1)">-</button>
+                                    <span>${item.cantidad}</span>
+                                    <button class="qty-btn" onclick="cambiarCantidad(${prod.id}, 1)">+</button>
+                                </div>
+                            </div>
+                            <button class="btn-delete" onclick="eliminarDelCarrito(${prod.id})">&times;</button>
+                        </div>
+                    `;
+                }).join('');
+                document.getElementById('total-precio').innerText = `$ ${total.toLocaleString()} COP`;
+            } else {
+                if (favoritos.length === 0) {
+                    container.innerHTML = `<p style="text-align:center; color:#9ca3af; margin-top:2rem;">No tienes productos guardados ❤️</p>`;
+                    return;
+                }
+                container.innerHTML = favoritos.map(id => {
+                    const prod = productos.find(p => p.id === id);
+                    return `
+                        <div class="item-row">
+                            <img src="${prod.img}" alt="${prod.nombre}">
+                            <div class="item-details">
+                                <h4>${prod.nombre}</h4>
+                                <p>$ ${prod.precio.toLocaleString()} COP</p>
+                                <button style="background:var(--primary); color:#fff; border:none; padding:4px 8px; border-radius:4px; font-size:0.75rem; cursor:pointer; margin-top:5px;" onclick="moverFavAlCarrito(${prod.id})">Mover al Carrito</button>
+                            </div>
+                            <button class="btn-delete" onclick="toggleFavorito(${prod.id})">&times;</button>
+                        </div>
+                    `;
+                }).join('');
+            }
+        }
+
+        // INTEGRACIÓN PAGO TOTAL DEL CARRITO CON WOMPI
+        function procesarPagoCarrito() {
+            if (carrito.length === 0) {
+                alert("Tu carrito está vacío.");
+                return;
+            }
+
+            // Calcular monto total acumulado
+            const totalCOP = carrito.reduce((sum, item) => {
+                const prod = productos.find(p => p.id === item.id);
+                return sum + (prod.precio * item.cantidad);
+            }, 0);
+
+            const precioCentavos = totalCOP * 100;
+            const referenciaUnica = 'CART-BICI-' + Date.now();
+
+            const checkout = new WidgetCheckout({
+                currency: 'COP',
+                amount: precioCentavos,
+                reference: referenciaUnica,
+                publicKey: 'pub_test_Q5y15W9zGPRCJOenBxowhEIFKG62Tedd', // Reemplazar con tu llave pública real
+                paymentMethods: { card: true, pse: true, nequi: true, bancolombia: true }
+            });
+
+            checkout.open(function (result) {
+                const transaction = result.transaction;
+                if (transaction.status === "APPROVED") {
+                    alert("¡Pago exitoso! Transacción ID: " + transaction.id);
+                    carrito = [];
+                    guardarEstado();
+                    cerrarDrawer();
+                    renderProductos();
+                } else {
+                    alert("Estado de transacción: " + transaction.status);
+                }
+            });
+        }
+
+        // INICIALIZACIÓN
+        renderProductos();
+    </script>
 </body>
 </html>
