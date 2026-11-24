@@ -2,406 +2,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Repuestos y Accesorios para Bicicletas | Tienda Especializada</title>
-
-    <!-- FUENTE TIPOGRÁFICA DEPORTIVA (MONTSERRAT) -->
+    <title>BiciRepuestos | Tienda en Línea de Repuestos y Accesorios</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-
-    <!-- ESTILOS -->
-    <style>
-        :root {
-            --primary: #ff5722;
-            --primary-hover: #e64a19;
-            --dark-asphalt: #18191c;
-            --light-bg: #f3f4f6;
-            --card-bg: #ffffff;
-            --text-main: #1f2937;
-            --text-muted: #6b7280;
-            --border-radius: 12px;
-            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Montserrat', sans-serif; color: var(--text-main); background-color: #ffffff; line-height: 1.6; }
-
-        header {
-            position: sticky; top: 0; z-index: 1000; display: flex; justify-content: space-between; align-items: center;
-            padding: 1rem 8%; background: rgba(24, 25, 28, 0.95); backdrop-filter: blur(10px);
-            border-bottom: 3px solid var(--primary); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-        }
-        .logo { font-size: 1.5rem; font-weight: 900; color: #ffffff; text-transform: uppercase; display: flex; align-items: center; gap: 10px; }
-        .logo::before { content: "⚙️"; font-size: 1.5rem; }
-
-        nav { display: flex; gap: 1.5rem; align-items: center; }
-        nav a { color: #e5e7eb; text-decoration: none; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; transition: var(--transition); }
-        nav a:hover { color: var(--primary); }
-
-        .btn-header-icon {
-            background: #25282e; border: 1px solid #3d424d; color: #fff; padding: 0.5rem 1rem;
-            border-radius: 20px; font-weight: 700; font-size: 0.85rem; cursor: pointer; display: flex;
-            align-items: center; gap: 8px; transition: var(--transition); position: relative;
-        }
-        .btn-header-icon:hover { background: var(--primary); border-color: var(--primary); }
-        .badge-count {
-            background: var(--primary); color: #fff; border-radius: 50%; padding: 2px 7px;
-            font-size: 0.75rem; font-weight: 900;
-        }
-
-        .hero { position: relative; min-height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 3rem 5%; }
-        .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(24, 25, 28, 0.9) 0%, rgba(24, 25, 28, 0.6) 100%); z-index: 1; }
-        .hero-text { position: relative; z-index: 2; max-width: 900px; color: #ffffff; }
-        .hero-text h1 { font-size: 3.2rem; font-weight: 900; line-height: 1.15; margin-bottom: 1.2rem; text-transform: uppercase; }
-        .hero-text p { font-size: 1.2rem; margin-bottom: 2.2rem; color: #d1d5db; }
-        .hero-text button { background: var(--primary); color: #ffffff; border: none; padding: 1.1rem 3rem; font-size: 1rem; font-weight: 800; text-transform: uppercase; border-radius: var(--border-radius); cursor: pointer; transition: var(--transition); }
-        .hero-text button:hover { background: var(--primary-hover); transform: translateY(-3px); }
-
-        .section { padding: 5rem 8%; }
-        .section.fondo { background-color: var(--light-bg); }
-        .section h2 { text-align: center; font-size: 2.2rem; font-weight: 900; color: var(--dark-asphalt); text-transform: uppercase; margin-bottom: 1.5rem; position: relative; }
-        .section h2::after { content: ''; display: block; width: 80px; height: 5px; background: var(--primary); margin: 10px auto 0; border-radius: 3px; }
-        .texto-centro { text-align: center; max-width: 800px; margin: 0 auto; font-size: 1.15rem; color: var(--text-muted); }
-
-        .metodos-pago-container { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-top: 1rem; margin-bottom: 2.5rem; }
-        .pago-badge { background: #ffffff; border: 1px solid #d1d5db; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: var(--dark-asphalt); }
-
-        .tienda-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
-        .producto-card { background: var(--card-bg); border-radius: var(--border-radius); overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); display: flex; flex-direction: column; border: 1px solid #e5e7eb; position: relative; }
-        .producto-card img { width: 100%; height: 200px; object-fit: cover; }
-        .producto-info { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; justify-content: space-between; }
-        .producto-info h3 { font-size: 1.1rem; font-weight: 800; color: var(--dark-asphalt); margin-bottom: 0.5rem; }
-        .producto-info p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
-        .precio { font-size: 1.25rem; font-weight: 900; color: var(--primary); margin-bottom: 1rem; }
-        
-        .acciones-card { display: flex; gap: 8px; }
-        .btn-comprar { background: var(--primary); color: #ffffff; border: none; padding: 0.8rem; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; border-radius: 8px; cursor: pointer; transition: var(--transition); flex: 1; }
-        .btn-comprar:hover { background: var(--primary-hover); }
-        .btn-fav { background: #f3f4f6; border: 1px solid #d1d5db; padding: 0.8rem; border-radius: 8px; cursor: pointer; transition: var(--transition); font-size: 1rem; }
-        .btn-fav:hover { background: #ffebee; border-color: #ff5252; }
-
-        /* PANEL LATERAL DEL CARRITO Y FAVORITOS */
-        .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1001; display: none; }
-        .overlay.activo { display: block; }
-        .cart-drawer {
-            position: fixed; top: 0; right: -420px; width: 400px; max-width: 100%; height: 100%;
-            background: #ffffff; z-index: 1002; box-shadow: -5px 0 25px rgba(0,0,0,0.2);
-            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column;
-        }
-        .cart-drawer.activo { right: 0; }
-        .drawer-header { padding: 1.5rem; background: var(--dark-asphalt); color: #fff; display: flex; justify-content: space-between; align-items: center; }
-        .drawer-header h3 { font-size: 1.2rem; font-weight: 800; text-transform: uppercase; }
-        .close-btn { background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; }
-        .drawer-tabs { display: flex; border-bottom: 1px solid #e5e7eb; }
-        .tab-btn { flex: 1; padding: 1rem; background: #f9fafb; border: none; font-weight: 700; font-size: 0.85rem; cursor: pointer; text-transform: uppercase; color: var(--text-muted); }
-        .tab-btn.activo { background: #fff; color: var(--primary); border-bottom: 3px solid var(--primary); }
-        .drawer-content { padding: 1.5rem; flex: 1; overflow-y: auto; }
-        .item-row { display: flex; gap: 12px; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #e5e7eb; align-items: center; }
-        .item-row img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; }
-        .item-details { flex: 1; }
-        .item-details h4 { font-size: 0.9rem; font-weight: 800; color: var(--dark-asphalt); }
-        .item-details p { font-size: 0.85rem; color: var(--primary); font-weight: 700; }
-        .item-qty { display: flex; align-items: center; gap: 8px; margin-top: 5px; }
-        .qty-btn { background: #e5e7eb; border: none; width: 22px; height: 22px; border-radius: 4px; font-weight: 800; cursor: pointer; }
-        .btn-delete { background: none; border: none; color: #ef4444; cursor: pointer; font-size: 1.1rem; }
-        .drawer-footer { padding: 1.5rem; background: #f9fafb; border-top: 1px solid #e5e7eb; }
-        .total-row { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 900; margin-bottom: 1rem; color: var(--dark-asphalt); }
-        .btn-checkout { width: 100%; background: var(--primary); color: #fff; border: none; padding: 1rem; font-weight: 800; font-size: 0.95rem; text-transform: uppercase; border-radius: 8px; cursor: pointer; transition: var(--transition); }
-        .btn-checkout:hover { background: var(--primary-hover); }
-
-        footer { background-color: var(--dark-asphalt); color: #9ca3af; text-align: center; padding: 3rem 1rem; border-top: 4px solid var(--primary); }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
     <header>
-        <div class="logo">BiciRepuestos</div>
+        <div class="logo">
+            BiciRepuestos
+        </div>
+
         <nav>
             <a href="#inicio">Inicio</a>
-            <a href="#tienda">Tienda Online</a>
-            <button class="btn-header-icon" onclick="abrirDrawer('fav')">
-                ❤️ Guardados <span class="badge-count" id="count-fav">0</span>
-            </button>
-            <button class="btn-header-icon" onclick="abrirDrawer('cart')">
-                🛒 Carrito <span class="badge-count" id="count-cart">0</span>
-            </button>
+            <a href="#tienda">Tienda</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#galeria">Galería</a>
+            <a href="#contacto">Contacto</a>
         </nav>
+
+        <button class="btn-carrito-header" onclick="toggleCarrito()">
+            🛒 Carrito (<span id="contador-carrito">0</span>)
+        </button>
     </header>
 
-    <section id="inicio" class="hero" style="background-image: url('https://cdn.brujulabike.com/uploads/images/emtb_bicicleta_electrina_montana.jpg'); background-size: cover; background-position: center;">
+    <section id="inicio" class="hero" style="background-image: url('https://cdn.brujulabike.com/uploads/images/emtb_bicicleta_electrina_montana.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
         <div class="hero-text">
             <h1>Especialistas en Repuestos y Mantenimiento de Bicicletas</h1>
-            <p>Encuentra piezas originales y componentes Shimano para tu bicicleta.</p>
-            <button onclick="location.href='#tienda'">Comprar Repuestos</button>
+            <p>Encuentra las mejores piezas, componentes Shimano y accesorios para llevar tu bicicleta al siguiente nivel. ¡Compra directo en línea!</p>
+            <a href="#tienda" class="btn-hero">Explorar Tienda</a>
         </div>
     </section>
 
     <section id="tienda" class="section fondo">
-        <h2>Tienda en Línea</h2>
-        <p class="texto-centro">Añade repuestos al carrito o guárdalos en tus favoritos para comprar después.</p>
+        <h2>Catálogo de Repuestos y Accesorios</h2>
+        <p class="texto-centro" style="margin-bottom: 2rem;">
+            Selecciona los componentes que necesitas y agrégalos a tu carrito de compras.
+        </p>
 
-        <div class="metodos-pago-container">
-            <span class="pago-badge">💳 Tarjeta Crédito / Débito</span>
-            <span class="pago-badge">🏦 PSE (Cuentas Bancarias)</span>
-            <span class="pago-badge">📱 Nequi / Daviplata</span>
-            <span class="pago-badge">🏧 Transferencia Bancaria</span>
+        <div class="filtros">
+            <button class="btn-filtro activo" onclick="filtrarProductos('todos', this)">Todos</button>
+            <button class="btn-filtro" onclick="filtrarProductos('transmision', this)">Transmisión</button>
+            <button class="btn-filtro" onclick="filtrarProductos('frenos', this)">Frenos</button>
+            <button class="btn-filtro" onclick="filtrarProductos('llantas', this)">Llantas y Ruedas</button>
+            <button class="btn-filtro" onclick="filtrarProductos('accesorios', this)">Accesorios</button>
         </div>
 
-        <div class="tienda-grid" id="productos-container">
-            <!-- Se renderizan los productos mediante JavaScript -->
+        <div class="productos-grid" id="contenedor-productos"></div>
+    </section>
+
+    <section id="nosotros" class="section">
+        <h2>Sobre Nosotros</h2>
+        <p class="texto-centro">
+            Somos apasionados del ciclismo. Ofrecemos repuestos de alta calidad, asesoría técnica y componentes originales para todo tipo de bicicletas de ruta, montaña y urbanas.
+        </p>
+    </section>
+
+    <section id="servicios" class="section fondo">
+        <h2>Servicios de Taller</h2>
+
+        <div class="cards">
+            <div class="card">
+                <h3>Venta de Repuestos</h3>
+                <p>Componentes originales y repuestos Shimano para transmisiones, frenos y más.</p>
+                <button onclick="mostrarServicio('Venta de Repuestos')">Ver más</button>
+            </div>
+
+            <div class="card">
+                <h3>Mantenimiento General</h3>
+                <p>Ajustes de transmisión, lubricación, centrado de ruedas y puesta a punto.</p>
+                <button onclick="mostrarServicio('Mantenimiento General')">Ver más</button>
+            </div>
+
+            <div class="card">
+                <h3>Instalación y Ajustes</h3>
+                <p>Instalación profesional de accesorios y actualización de componentes.</p>
+                <button onclick="mostrarServicio('Instalación y Ajustes')">Ver más</button>
+            </div>
         </div>
     </section>
 
-    <!-- OVERLAY & DRAWER LATERAL -->
-    <div class="overlay" id="overlay" onclick="cerrarDrawer()"></div>
+    <section id="galeria" class="section">
+        <h2>Galería de Taller y Piezas</h2>
 
-    <div class="cart-drawer" id="cart-drawer">
-        <div class="drawer-header">
-            <h3 id="drawer-title">Mi Carrito</h3>
-            <button class="close-btn" onclick="cerrarDrawer()">&times;</button>
+        <div class="galeria">
+            <img src="https://i.pinimg.com/originals/e4/2b/a9/e42ba94613f78040b6009c20b72d5bea.jpg" alt="Accesorios y Repuestos de Bicicleta" onclick="ampliarImagen(this)">
+            <img src="https://tiendadbicis.com/wp-content/uploads/2023/10/repuestos-shimano.jpg" alt="Repuestos Shimano para Bicicletas" onclick="ampliarImagen(this)">
+            <img src="https://www.bttbike.com/foto/o/12/05/1205370784_bicicletas_020.jpg" alt="Componentes y Bicicletas" onclick="ampliarImagen(this)">
         </div>
-        <div class="drawer-tabs">
-            <button class="tab-btn activo" id="tab-cart" onclick="switchTab('cart')">🛒 Carrito</button>
-            <button class="tab-btn" id="tab-fav" onclick="switchTab('fav')">❤️ Guardados</button>
+    </section>
+
+    <section id="contacto" class="section fondo">
+        <h2>Contacto</h2>
+
+        <form onsubmit="enviarFormulario(event)">
+            <input type="text" id="nombre" placeholder="Nombre" required>
+            <input type="email" id="correo" placeholder="Correo electrónico" required>
+            <textarea id="mensaje" placeholder="Escribe tu mensaje o consulta sobre repuestos" required></textarea>
+            <button type="submit">Enviar Mensaje</button>
+        </form>
+    </section>
+
+    <div id="overlay-carrito" class="overlay-carrito" onclick="toggleCarrito()"></div>
+    <aside id="panel-carrito" class="panel-carrito">
+        <div class="carrito-header">
+            <h3>Tu Carrito 🛒</h3>
+            <button class="btn-cerrar" onclick="toggleCarrito()">✖</button>
         </div>
-        <div class="drawer-content" id="drawer-items">
-            <!-- Los ítems del carrito o favoritos se cargan aquí -->
+
+        <div id="items-carrito" class="carrito-items">
+            <p class="carrito-vacio">Tu carrito está vacío.</p>
         </div>
-        <div class="drawer-footer" id="drawer-footer">
-            <div class="total-row">
-                <span>Total:</span>
-                <span id="total-precio">$ 0 COP</span>
+
+        <div class="carrito-footer">
+            <div class="carrito-total">
+                <span>Total a pagar:</span>
+                <span id="total-carrito">$0</span>
             </div>
-            <button class="btn-checkout" onclick="procesarPagoCarrito()">Pagar Todo con Wompi / PSE</button>
+            <button class="btn-comprar" onclick="procesarCompra()">Finalizar Compra</button>
+            <button class="btn-vaciar" onclick="vaciarCarrito()">Vaciar Carrito</button>
         </div>
-    </div>
+    </aside>
 
     <footer>
         <p>© 2026 BiciRepuestos - Tienda y Taller de Bicicletas</p>
+        <p>Página creada con HTML, CSS y JavaScript</p>
     </footer>
 
-    <!-- SCRIPT OFICIAL DE WOMPI -->
-    <script src="https://checkout.wompi.co/widget.js"></script>
-    <script>
-        // CATÁLOGO DE PRODUCTOS
-        const productos = [
-            { id: 1, nombre: "Kit de Transmisión Shimano 9v", desc: "Incluye cadena, pachas y desviador compatible con MTB.", precio: 249900, img: "https://i.pinimg.com/originals/e4/2b/a9/e42ba94613f78040b6009c20b72d5bea.jpg" },
-            { id: 2, nombre: "Frenos Hidráulicos Shimano MT200", desc: "Juego de frenos delantero y trasero purgados listos.", precio: 185000, img: "https://tiendadbicis.com/wp-content/uploads/2023/10/repuestos-shimano.jpg" },
-            { id: 3, nombre: "Suspensión delantera R29", desc: "Bloqueo remoto al manubrio, recorrido de 100mm.", precio: 380000, img: "https://www.bttbike.com/foto/o/12/05/1205370784_bicicletas_020.jpg" }
-        ];
-
-        // ESTADO DE LA APLICACIÓN (Carga inicial desde localStorage)
-        let carrito = JSON.parse(localStorage.getItem('bici_cart')) || [];
-        let favoritos = JSON.parse(localStorage.getItem('bici_favs')) || [];
-        let currentTab = 'cart';
-
-        // RENDERIZAR PRODUCTOS EN LA TIENDA
-        function renderProductos() {
-            const container = document.getElementById('productos-container');
-            container.innerHTML = productos.map(prod => `
-                <div class="producto-card">
-                    <img src="${prod.img}" alt="${prod.nombre}">
-                    <div class="producto-info">
-                        <div>
-                            <h3>${prod.nombre}</h3>
-                            <p>${prod.desc}</p>
-                        </div>
-                        <div>
-                            <div class="precio">$ ${prod.precio.toLocaleString()} COP</div>
-                            <div class="acciones-card">
-                                <button class="btn-comprar" onclick="agregarAlCarrito(${prod.id})">Añadir al Carrito</button>
-                                <button class="btn-fav" onclick="toggleFavorito(${prod.id})" title="Guardar para después">
-                                    ${favoritos.includes(prod.id) ? '❤️' : '🤍'}
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `).join('');
-            actualizarBadges();
-        }
-
-        // AGREGAR AL CARRITO
-        function agregarAlCarrito(id) {
-            const item = carrito.find(p => p.id === id);
-            if (item) {
-                item.cantidad += 1;
-            } else {
-                carrito.push({ id, cantidad: 1 });
-            }
-            guardarEstado();
-            abrirDrawer('cart');
-        }
-
-        // GUARDAR / QUITAR FAVORITOS
-        function toggleFavorito(id) {
-            if (favoritos.includes(id)) {
-                favoritos = favoritos.filter(favId => favId !== id);
-            } else {
-                favoritos.push(id);
-            }
-            guardarEstado();
-            renderProductos();
-            if (currentTab === 'fav') renderDrawerContent();
-        }
-
-        // CAMBIAR CANTIDAD EN CARRITO
-        function cambiarCantidad(id, delta) {
-            const item = carrito.find(p => p.id === id);
-            if (item) {
-                item.cantidad += delta;
-                if (item.cantidad <= 0) {
-                    carrito = carrito.filter(p => p.id !== id);
-                }
-            }
-            guardarEstado();
-            renderDrawerContent();
-        }
-
-        // ELIMINAR DEL CARRITO
-        function eliminarDelCarrito(id) {
-            carrito = carrito.filter(p => p.id !== id);
-            guardarEstado();
-            renderDrawerContent();
-        }
-
-        // PASAR FAVORITO AL CARRITO
-        function moverFavAlCarrito(id) {
-            agregarAlCarrito(id);
-            favoritos = favoritos.filter(favId => favId !== id);
-            guardarEstado();
-            renderProductos();
-        }
-
-        // GUARDAR EN LOCALSTORAGE Y ACTUALIZAR CONTADORES
-        function guardarEstado() {
-            localStorage.setItem('bici_cart', JSON.stringify(carrito));
-            localStorage.setItem('bici_favs', JSON.stringify(favoritos));
-            actualizarBadges();
-        }
-
-        function actualizarBadges() {
-            const totalItemsCart = carrito.reduce((acc, curr) => acc + curr.cantidad, 0);
-            document.getElementById('count-cart').innerText = totalItemsCart;
-            document.getElementById('count-fav').innerText = favoritos.length;
-        }
-
-        // CONTROLES DEL DRAWER LATERAL
-        function abrirDrawer(tab) {
-            currentTab = tab;
-            document.getElementById('overlay').classList.add('activo');
-            document.getElementById('cart-drawer').classList.add('activo');
-            switchTab(tab);
-        }
-
-        function cerrarDrawer() {
-            document.getElementById('overlay').classList.remove('activo');
-            document.getElementById('cart-drawer').classList.remove('activo');
-        }
-
-        function switchTab(tab) {
-            currentTab = tab;
-            document.getElementById('tab-cart').classList.toggle('activo', tab === 'cart');
-            document.getElementById('tab-fav').classList.toggle('activo', tab === 'fav');
-            document.getElementById('drawer-title').innerText = tab === 'cart' ? 'Mi Carrito' : 'Mis Favoritos';
-            document.getElementById('drawer-footer').style.display = tab === 'cart' ? 'block' : 'none';
-            renderDrawerContent();
-        }
-
-        // RENDERIZAR CONTENIDO DENTRO DEL DRAWER
-        function renderDrawerContent() {
-            const container = document.getElementById('drawer-items');
-            if (currentTab === 'cart') {
-                if (carrito.length === 0) {
-                    container.innerHTML = `<p style="text-align:center; color:#9ca3af; margin-top:2rem;">Tu carrito está vacío 🛒</p>`;
-                    document.getElementById('total-precio').innerText = '$ 0 COP';
-                    return;
-                }
-                let total = 0;
-                container.innerHTML = carrito.map(item => {
-                    const prod = productos.find(p => p.id === item.id);
-                    total += prod.precio * item.cantidad;
-                    return `
-                        <div class="item-row">
-                            <img src="${prod.img}" alt="${prod.nombre}">
-                            <div class="item-details">
-                                <h4>${prod.nombre}</h4>
-                                <p>$ ${(prod.precio * item.cantidad).toLocaleString()} COP</p>
-                                <div class="item-qty">
-                                    <button class="qty-btn" onclick="cambiarCantidad(${prod.id}, -1)">-</button>
-                                    <span>${item.cantidad}</span>
-                                    <button class="qty-btn" onclick="cambiarCantidad(${prod.id}, 1)">+</button>
-                                </div>
-                            </div>
-                            <button class="btn-delete" onclick="eliminarDelCarrito(${prod.id})">&times;</button>
-                        </div>
-                    `;
-                }).join('');
-                document.getElementById('total-precio').innerText = `$ ${total.toLocaleString()} COP`;
-            } else {
-                if (favoritos.length === 0) {
-                    container.innerHTML = `<p style="text-align:center; color:#9ca3af; margin-top:2rem;">No tienes productos guardados ❤️</p>`;
-                    return;
-                }
-                container.innerHTML = favoritos.map(id => {
-                    const prod = productos.find(p => p.id === id);
-                    return `
-                        <div class="item-row">
-                            <img src="${prod.img}" alt="${prod.nombre}">
-                            <div class="item-details">
-                                <h4>${prod.nombre}</h4>
-                                <p>$ ${prod.precio.toLocaleString()} COP</p>
-                                <button style="background:var(--primary); color:#fff; border:none; padding:4px 8px; border-radius:4px; font-size:0.75rem; cursor:pointer; margin-top:5px;" onclick="moverFavAlCarrito(${prod.id})">Mover al Carrito</button>
-                            </div>
-                            <button class="btn-delete" onclick="toggleFavorito(${prod.id})">&times;</button>
-                        </div>
-                    `;
-                }).join('');
-            }
-        }
-
-        // INTEGRACIÓN PAGO TOTAL DEL CARRITO CON WOMPI
-        function procesarPagoCarrito() {
-            if (carrito.length === 0) {
-                alert("Tu carrito está vacío.");
-                return;
-            }
-
-            // Calcular monto total acumulado
-            const totalCOP = carrito.reduce((sum, item) => {
-                const prod = productos.find(p => p.id === item.id);
-                return sum + (prod.precio * item.cantidad);
-            }, 0);
-
-            const precioCentavos = totalCOP * 100;
-            const referenciaUnica = 'CART-BICI-' + Date.now();
-
-            const checkout = new WidgetCheckout({
-                currency: 'COP',
-                amount: precioCentavos,
-                reference: referenciaUnica,
-                publicKey: 'pub_test_Q5y15W9zGPRCJOenBxowhEIFKG62Tedd', // Reemplazar con tu llave pública real
-                paymentMethods: { card: true, pse: true, nequi: true, bancolombia: true }
-            });
-
-            checkout.open(function (result) {
-                const transaction = result.transaction;
-                if (transaction.status === "APPROVED") {
-                    alert("¡Pago exitoso! Transacción ID: " + transaction.id);
-                    carrito = [];
-                    guardarEstado();
-                    cerrarDrawer();
-                    renderProductos();
-                } else {
-                    alert("Estado de transacción: " + transaction.status);
-                }
-            });
-        }
-
-        // INICIALIZACIÓN
-        renderProductos();
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
